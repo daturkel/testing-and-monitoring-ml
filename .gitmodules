@@ -1,0 +1,3 @@
+[submodule "testing-and-monitoring-ml-deployments"]
+	path = testing-and-monitoring-ml-deployments
+	url = https://github.com/trainindata/testing-and-monitoring-ml-deployments
