@@ -1,0 +1,3 @@
+[submodule "testing-and-monitoring-ml-deployments"]
+	path = testing-and-monitoring-ml-deployments
+	url = git@github.com:daturkel/testing-and-monitoring-ml-deployments.git

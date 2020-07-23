@@ -71,4 +71,50 @@ Optimizing blindly for test coverage can lead to diminishing returns or even mak
 
 ### Testing machine learning systems
 
+Why is ML hard to test?
+
+In traditional software, the code is the only thing to test. In ML systems, we **also have to test the model and the data**.
+
+Traditional software is constructed deductively, whereas ML systems are constructed inductively. The rules governing an ML system are thus less clearly defined.
+
+A useful paper is [The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/aad9f93b86b7addfea4c419b9100c6cdd26cacea.pdf).
+
+#### Key testing principles
+
+Pre deployment:
+
+- Use a schema for features (schemas should expose feature expectations)
+- Model specification tests (model configuration like hyperparameters need unit testing)
+- Test input feature code (bugs in features are hard to detect further down the pipeline)
+- Validate model quality prior to serving
+- Training is reproducible (important!)
+- Integration testing on the full pipeline
+
+#### Summary
+
+| Unit testing                 | Integration testing   | System testing                                       | Production testing | Monitoring                                        |
+| ---------------------------- | --------------------- | ---------------------------------------------------- | ------------------ | ------------------------------------------------- |
+| Schema for inputs            | Reproducible training | Reproducible predictions                             | Shadow deployments | Monitor system serving performance (latency)      |
+| Model specification          | Pipeline testing      | Model-infrastructure compatibility                   | Canary releases    | Monitor model quality (accuracy, skew, staleness) |
+| Input feature code           |                       | Validate model quality (differential tests)          |                    |                                                   |
+| Model quality (algorithmic)  |                       | Validate computational performance (benchmark tests) |                    |                                                   |
+| Model quality (benchmarking) |                       | Validate system performance (load tests)             |                    |                                                   |
+
+### Assignment 1: Unit testing input data
+
+This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_input_data.ipynb
+
+We implement an input schema unit test that checks that all data is within value ranges (that we set by looking at the min and max of the data) and that all data is of the expected data type.
+
+This type of testing ensures that our assumptions about incoming data are true.
+
+### Assignment 2: Unit testing data engineering code
+
+This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_data_engineering.ipynb
+
+We add a standard scaler to our pipeline and write tests that ensure it's working: is the mean 0 and is the standard deviation 1?
+
+This type of testing ensures that our data engineering pipeline works as expected.
+
 ### Wrap up
+
