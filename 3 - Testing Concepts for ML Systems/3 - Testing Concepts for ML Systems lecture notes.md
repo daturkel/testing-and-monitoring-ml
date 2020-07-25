@@ -116,5 +116,30 @@ We add a standard scaler to our pipeline and write tests that ensure it's workin
 
 This type of testing ensures that our data engineering pipeline works as expected.
 
+### Assignment 3: Unit testing model quality
+
+This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_model_predictions_quality.ipynb
+
+We write two types of tests:
+
+- **benchmark test**: compare model accuracy to a simple benchmark
+- **differential test**: compare model accuracy from one version to the next
+
+Our benchmark in this Iris classification example just guesses class 1 for all examples.
+
+Our two prediction models are the simple pipeline from Assignment 1 and the feature engineering pipeline from Assignment 2. The differential test ensures that feature engineered pipeline is better than the simple pipeline.
+
+### Assignment 3: Unit testing model config
+
+This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_model_configuration.ipynb
+
+We introduce a pipeline with configuration options that get passed to our algorithm. Passing the configuration from our pipeline to the model is an example of **dependency injection**. 
+
+In this scenario, we've found that there are configurations that we don't want to use, so our tests will ensure that bad configurations aren't being used.
+
+We can think of this as a defense against misconfiguring the model after we've learned that certain configurations are bad.
+
 ### Wrap up
+
+Next up we're going to leave Jupyter and enter a realistic codebase.
 
