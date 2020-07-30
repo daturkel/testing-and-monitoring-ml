@@ -1,6 +1,6 @@
-## Testing Concepts for ML Systems
+# Testing Concepts for ML Systems
 
-### Testing focus in this course
+## Testing focus in this course
 
 This section clarifies which elements of testing are in scope for this course.
 
@@ -27,7 +27,7 @@ Production environment has:
 - logging and tracing
 - alerting
 
-### Why test?
+## Why test?
 
 Why should we write tests at all?
 
@@ -45,7 +45,7 @@ Testing's real value is shown *when the system changes*.
 
 Not testing is like building up debt.
 
-### Testing theory
+## Testing theory
 
 Google's online [Site Reliability Engineering book](https://landing.google.com/sre/sre-book/toc/index.html) has a lot of great info on testing.
 
@@ -57,19 +57,19 @@ The hierarchy of tests is:
 
 We typically have more unit tests than integration tests and more integration tests than system tests. (Some say that we should have more integration than unit tests, however.)
 
-#### How much testing?
+### How much testing?
 
 Required amount of tests can be seen as a function of the desired reliability of the system. 
 
 Optimizing blindly for test coverage can lead to diminishing returns or even make development more difficult. But having very low coverage is dangerous as little of the functionality is tested. There is a balance.
 
-#### What to test?
+### What to test?
 
 - Can you prioritize the codebase into sections whose functionality has greater importance?
 - What is mission critical?
 - **Does a test reduce uncertainty about how your system will function when it undergoes changes? If so, it's a useful test.**
 
-### Testing machine learning systems
+## Testing machine learning systems
 
 Why is ML hard to test?
 
@@ -79,7 +79,7 @@ Traditional software is constructed deductively, whereas ML systems are construc
 
 A useful paper is [The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/aad9f93b86b7addfea4c419b9100c6cdd26cacea.pdf).
 
-#### Key testing principles
+### Key testing principles
 
 Pre deployment:
 
@@ -90,7 +90,7 @@ Pre deployment:
 - Training is reproducible (important!)
 - Integration testing on the full pipeline
 
-#### Summary
+### Summary
 
 | Unit testing                 | Integration testing   | System testing                                       | Production testing | Monitoring                                        |
 | ---------------------------- | --------------------- | ---------------------------------------------------- | ------------------ | ------------------------------------------------- |
@@ -100,7 +100,7 @@ Pre deployment:
 | Model quality (algorithmic)  |                       | Validate computational performance (benchmark tests) |                    |                                                   |
 | Model quality (benchmarking) |                       | Validate system performance (load tests)             |                    |                                                   |
 
-### Assignment 1: Unit testing input data
+## Assignment 1: Unit testing input data
 
 This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_input_data.ipynb
 
@@ -108,7 +108,7 @@ We implement an input schema unit test that checks that all data is within value
 
 This type of testing ensures that our assumptions about incoming data are true.
 
-### Assignment 2: Unit testing data engineering code
+## Assignment 2: Unit testing data engineering code
 
 This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_data_engineering.ipynb
 
@@ -116,7 +116,7 @@ We add a standard scaler to our pipeline and write tests that ensure it's workin
 
 This type of testing ensures that our data engineering pipeline works as expected.
 
-### Assignment 3: Unit testing model quality
+## Assignment 3: Unit testing model quality
 
 This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_model_predictions_quality.ipynb
 
@@ -129,7 +129,7 @@ Our benchmark in this Iris classification example just guesses class 1 for all e
 
 Our two prediction models are the simple pipeline from Assignment 1 and the feature engineering pipeline from Assignment 2. The differential test ensures that feature engineered pipeline is better than the simple pipeline.
 
-### Assignment 3: Unit testing model config
+## Assignment 4: Unit testing model config
 
 This assignment is notebook exercise_notebooks > unit_testing_exercise > unit_testing_model_configuration.ipynb
 
@@ -139,7 +139,7 @@ In this scenario, we've found that there are configurations that we don't want t
 
 We can think of this as a defense against misconfiguring the model after we've learned that certain configurations are bad.
 
-### Wrap up
+## Wrap up
 
 Next up we're going to leave Jupyter and enter a realistic codebase.
 
