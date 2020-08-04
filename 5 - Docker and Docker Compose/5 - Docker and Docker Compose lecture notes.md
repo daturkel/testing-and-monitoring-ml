@@ -139,3 +139,15 @@ volumes:
 Now our application will run two containers: `web` and `redis`.
 
 The key commands are `docker-compose build`, `docker-compose up`, and `docker-compose down`.
+
+## Assignment 5: Basic Docker Compose
+
+This assignment takes place at [this commit](https://github.com/trainindata/testing-and-monitoring-ml-deployments/commit/c1f709cebb7a054dd415ec42a2a732054ce50c77).
+
+This assignment uses the contents of exercise_notebooks > docker_exercise
+
+We will set up a docker-compose application which uses a Flask container and a Redis container.
+
+Our app is a Flask app with a `/` endpoint which counts how many hits it's gotten. It does this by incrementing a count in the Redis cache. Redis is running in its own container with the default port `6379` exposed.
+
+The counter persists between `docker-compose` runs because redis saves RDB backups to the `/data` volume.
