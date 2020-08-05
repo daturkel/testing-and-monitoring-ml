@@ -62,6 +62,44 @@ We can now use the Swagger UI to try out our prediction endpoint and we see that
 
 ## Integration testing theory
 
+**Integration testing** is testing that multiple modules work *together* as expected.
+
+In our case, we want to make sure our serving API works as expected with our model package.
+
 ## Integration testing hands-on code
 
+This section takes place at [this commit](https://github.com/trainindata/testing-and-monitoring-ml-deployments/commit/031ac57040764ff42be09643a0fb1816ce167309).
+
+We've created a fixture to create a test version of our API app. This is done via Flask's `test_client` method:
+
+```python
+@pytest.fixture(scope='session')
+def app():
+    app = create_app(config_object=TestingConfig()).app
+    with app.app_context():
+        yield app
+
+
+@pytest.fixture
+def client(app):
+    with app.test_client() as client:
+        yield client  # Has to be yielded to access session cookies
+```
+
+We decorate our integration tests with `@pytest.mark.integration`, which will allow us to specify that we run just the integration tests.
+
+The `test_prediction_endpoint` integration test is an integration test complement to the `test_validate_inputs` unit test. It ensures that our expectation about the model output is carried through the API request process.
+
+The `test_prediction_validation` test is parametrized with various faulty inputs to ensure that the correct error is raised.
+
+The tests, which are all marked, are then run with `pytest -m integration`.
+
 ## Note on benchmark integration tests
+
+When should we use benchmark tests?
+
+If models are exported to be used by a different application, engineered features might be calculated differently in an external implementation. (I.e. a situation not following best practices.)
+
+An integration benchmark uses a holdout dataset to ensure that the external application/service which is making predictions is also performing to our standards on that holdout data.
+
+This is like our benchmark unit tests which assess model performance against holdout data but which only do so at the level of the model package. The *benchmark* integration test assesses model performance across multiple systems for scenarios when one system is at risk of degrading model performance compared to the research environment due to some difference in implementation.
